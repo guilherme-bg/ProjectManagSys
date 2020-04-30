@@ -12,5 +12,8 @@ namespace ProjectManagementSystem.Data {
         }
 
         public DbSet<User> User { get; set; }
+        public DbSet<Project> Project { get; set; }
+        public DbSet<Team> Team { get; set; }
+        public DbSet<Step> Step { get; set; }        
     }
 }
