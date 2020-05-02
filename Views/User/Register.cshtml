@@ -1,0 +1,39 @@
+﻿@model UserRegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h2>Register</h2>
+<div class="col-md-12">
+    <form method="post">
+        <div class="form-group">
+            <label>Email</label>
+            <input asp-for="Email" placeholder="john@email.com" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>Confirm password</label>
+            <input asp-for="ConfirmPassword" class="form-control" />
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>First name</label>
+            <input asp-for="User.Name" class="form-control" />
+            <span asp-validation-for="User.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>Last name</label>
+            <input asp-for="User.LastName" class="form-control" />
+            <span asp-validation-for="User.LastName" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+        <a asp-action="Index" asp-controller="Home" class="btn btn-danger">Cancel</a>
+    </form>
+</div>
+
+
