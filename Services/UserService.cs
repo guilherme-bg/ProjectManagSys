@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ProjectManagementSystem.Data;
 using ProjectManagementSystem.Models;
+using ProjectManagementSystem.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,11 @@ namespace ProjectManagementSystem.Services {
                 Email = model.Email
             };
             await UserManager.CreateAsync(user, model.Password);
+        }
+
+        public async Task LoginAsync(UserLoginViewModel model) {
+            var user = await UserManager.FindByEmailAsync(model.Email);
+            await SigninManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);            
         }
 
     }

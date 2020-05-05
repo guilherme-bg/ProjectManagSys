@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectManagementSystem.Models {
     public class Project {
-        public int ProjectId { get; set; }
+        public int Id { get; set; }
         [Required]
         [StringLength(50, ErrorMessage = "The project name must have 50 or less characters!")]
         public string Name { get; set; }

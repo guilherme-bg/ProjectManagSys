@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ProjectManagementSystem.Models {
     public class Step {
-        public int StepId { get; set; }
+        public int Id { get; set; }
         public int ProjectId { get; set; }
-        public Project project { get; set; }
+        public Project Project { get; set; }
         [Required]
         [StringLength(30, MinimumLength = 3, ErrorMessage = "The step name must have between 3 and 30 characters!")]
         public string Name { get; set; }

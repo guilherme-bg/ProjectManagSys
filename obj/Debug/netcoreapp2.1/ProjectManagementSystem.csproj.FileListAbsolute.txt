@@ -32,3 +32,4 @@ C:\Users\Guilherme\source\repos\ProjectManagementSystem\ProjectManagementSystem\
 C:\Users\Guilherme\source\repos\ProjectManagementSystem\ProjectManagementSystem\obj\Debug\netcoreapp2.1\ProjectManagementSystem.csproj.CopyComplete
 C:\Users\Guilherme\source\repos\ProjectManagementSystem\ProjectManagementSystem\obj\Debug\netcoreapp2.1\Razor\Views\User\Register.g.cshtml.cs
 C:\Users\Guilherme\source\repos\ProjectManagementSystem\ProjectManagementSystem\obj\Debug\netcoreapp2.1\Razor\Views\User\Index.g.cshtml.cs
+C:\Users\Guilherme\source\repos\ProjectManagementSystem\ProjectManagementSystem\obj\Debug\netcoreapp2.1\Razor\Views\User\Login.g.cshtml.cs

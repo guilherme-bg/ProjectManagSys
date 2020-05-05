@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ProjectManagementSystem.Models;
+using ProjectManagementSystem.Models.ViewModels;
 using ProjectManagementSystem.Services;
 
 namespace ProjectManagementSystem.Controllers
@@ -19,14 +20,12 @@ namespace ProjectManagementSystem.Controllers
             UserService = userService;
         }
 
-
         public async Task<IActionResult> Index()
         {
             var list = await UserService.FindAllAsync();
             return View(list);
         }
-
-       
+             
         public async Task<IActionResult> Register() {
             var model = new UserRegisterViewModel();
             return View(model);
@@ -49,6 +48,25 @@ namespace ProjectManagementSystem.Controllers
             } else {
                 return Json($"Email {email} is already in use!");
             }
+        }
+
+        public async Task<IActionResult> Login() {
+            var model = new UserLoginViewModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(UserLoginViewModel model, string returnUrl) {
+            if (ModelState.IsValid) {
+                await UserService.LoginAsync(model);
+                if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl)) {
+                    return LocalRedirect(returnUrl);
+                } else {
+                    return RedirectToAction("Index");
+                }                
+            }
+            ModelState.AddModelError(string.Empty, "Incorrect email or password!");
+            return View(model);
         }
     }
 }
