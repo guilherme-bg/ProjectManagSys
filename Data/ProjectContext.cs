@@ -15,12 +15,14 @@ namespace ProjectManagementSystem.Data {
         public DbSet<User> User { get; set; }
         public DbSet<Project> Project { get; set; }
         public DbSet<Team> Team { get; set; }
-        public DbSet<Step> Step { get; set; }
+        public DbSet<Models.Step> Step { get; set; }        
+        public DbSet<Models.TeamMember> TeamMember{ get; set; }
         protected override void OnModelCreating(ModelBuilder builder) {
             builder.Entity<User>().HasKey(m => m.Id);
             builder.Entity<Project>().HasKey(m => m.Id);
             builder.Entity<Team>().HasKey(m => m.Id);
-            builder.Entity<Step>().HasKey(m => m.Id);
+            builder.Entity<Models.Step>().HasKey(m => m.Id);
+            builder.Entity<TeamMember>().HasKey(m => m.Id);
             base.OnModelCreating(builder);
         }
     }
