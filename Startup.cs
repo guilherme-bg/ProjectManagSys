@@ -34,7 +34,11 @@ namespace ProjectManagementSystem {
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddScoped<UserService>();
-            services.AddDbContext<ProjectContext>(options => options.UseMySql(Configuration.GetConnectionString("ProjectContext"), builder => builder.MigrationsAssembly("ProjectManagementSystem")));
+            services.AddScoped<ProjectService>();
+            services.AddScoped<StepService>();
+            services.AddScoped<TeamService>();
+
+            services.AddDbContextPool<ProjectContext>(options => options.UseMySql(Configuration.GetConnectionString("ProjectContext"), builder => builder.MigrationsAssembly("ProjectManagementSystem")));
 
 
 

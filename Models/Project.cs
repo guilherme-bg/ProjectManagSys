@@ -23,6 +23,7 @@ namespace ProjectManagementSystem.Models {
 
         public Team Team{ get; set; }
 
-        public Project() { }
+        public Project() {
+        }
     }
 }
