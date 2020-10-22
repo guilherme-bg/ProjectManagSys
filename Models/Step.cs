@@ -21,8 +21,10 @@ namespace ProjectManagementSystem.Models {
         [StringLength(500, MinimumLength = 10, ErrorMessage = "The step description must have between 10 and 500 characters!")]
         public string Description { get; set; }
 
-        public ICollection<TeamMember> Members{ get; set; }        
+        public ICollection<TeamMemberStep> TeamMemberStep{ get; set; }        
 
-        public Step() { }
+        public Step() {
+            
+        }
     }
 }

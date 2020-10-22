@@ -16,7 +16,7 @@ namespace ProjectManagementSystem.Services {
         }
 
         public async Task<Models.Project> FindByIdAsync(int id) {
-            return await Context.Project.FindAsync(id);
+            return await Context.Projects.FindAsync(id);
         }
         
         public async Task Create(ProjectCreateViewModel model) {
@@ -39,7 +39,7 @@ namespace ProjectManagementSystem.Services {
             var foundproject = await FindByIdAsync(model.project.Id);
             foundproject.Name = model.project.Name;
             foundproject.Description = model.project.Description;
-            Context.Project.Update(foundproject);
+            Context.Projects.Update(foundproject);
             Context.SaveChanges();
         }
 

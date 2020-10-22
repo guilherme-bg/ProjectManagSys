@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectManagementSystem.Data;
 
@@ -14,8 +15,9 @@ namespace ProjectManagementSystem.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
-                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+                .HasAnnotation("ProductVersion", "2.1.14-servicing-32113")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -35,7 +37,8 @@ namespace ProjectManagementSystem.Migrations
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasName("RoleNameIndex");
+                        .HasName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
                 });
@@ -43,7 +46,8 @@ namespace ProjectManagementSystem.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ClaimType");
 
@@ -62,7 +66,8 @@ namespace ProjectManagementSystem.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ClaimType");
 
@@ -127,7 +132,8 @@ namespace ProjectManagementSystem.Migrations
             modelBuilder.Entity("ProjectManagementSystem.Models.Project", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -143,13 +149,14 @@ namespace ProjectManagementSystem.Migrations
 
                     b.HasIndex("TeamId");
 
-                    b.ToTable("Project");
+                    b.ToTable("Projects");
                 });
 
             modelBuilder.Entity("ProjectManagementSystem.Models.Step", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -161,23 +168,18 @@ namespace ProjectManagementSystem.Migrations
 
                     b.Property<int>("ProjectId");
 
-                    b.Property<int>("UserId");
-
-                    b.Property<string>("UserId1");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ProjectId");
 
-                    b.HasIndex("UserId1");
-
-                    b.ToTable("Step");
+                    b.ToTable("Steps");
                 });
 
             modelBuilder.Entity("ProjectManagementSystem.Models.Team", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("UserId");
 
@@ -187,7 +189,47 @@ namespace ProjectManagementSystem.Migrations
 
                     b.HasIndex("UserId1");
 
-                    b.ToTable("Team");
+                    b.ToTable("Teams");
+                });
+
+            modelBuilder.Entity("ProjectManagementSystem.Models.TeamMember", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Role");
+
+                    b.Property<int>("TeamId");
+
+                    b.Property<int>("UserId");
+
+                    b.Property<string>("UserId1");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TeamId");
+
+                    b.HasIndex("UserId1");
+
+                    b.ToTable("TeamMembers");
+                });
+
+            modelBuilder.Entity("ProjectManagementSystem.Models.TeamMemberStep", b =>
+                {
+                    b.Property<string>("TeamMemberId");
+
+                    b.Property<int>("StepId");
+
+                    b.Property<int?>("TeamMemberId1");
+
+                    b.HasKey("TeamMemberId", "StepId");
+
+                    b.HasIndex("StepId");
+
+                    b.HasIndex("TeamMemberId1");
+
+                    b.ToTable("TeamMemberSteps");
                 });
 
             modelBuilder.Entity("ProjectManagementSystem.Models.User", b =>
@@ -231,8 +273,6 @@ namespace ProjectManagementSystem.Migrations
 
                     b.Property<string>("SecurityStamp");
 
-                    b.Property<int?>("TeamId");
-
                     b.Property<bool>("TwoFactorEnabled");
 
                     b.Property<string>("UserName")
@@ -245,9 +285,8 @@ namespace ProjectManagementSystem.Migrations
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasName("UserNameIndex");
-
-                    b.HasIndex("TeamId");
+                        .HasName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -311,10 +350,6 @@ namespace ProjectManagementSystem.Migrations
                         .WithMany("Steps")
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("ProjectManagementSystem.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId1");
                 });
 
             modelBuilder.Entity("ProjectManagementSystem.Models.Team", b =>
@@ -324,11 +359,28 @@ namespace ProjectManagementSystem.Migrations
                         .HasForeignKey("UserId1");
                 });
 
-            modelBuilder.Entity("ProjectManagementSystem.Models.User", b =>
+            modelBuilder.Entity("ProjectManagementSystem.Models.TeamMember", b =>
                 {
-                    b.HasOne("ProjectManagementSystem.Models.Team")
-                        .WithMany("Members")
-                        .HasForeignKey("TeamId");
+                    b.HasOne("ProjectManagementSystem.Models.Team", "Team")
+                        .WithMany("TeamMembers")
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ProjectManagementSystem.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId1");
+                });
+
+            modelBuilder.Entity("ProjectManagementSystem.Models.TeamMemberStep", b =>
+                {
+                    b.HasOne("ProjectManagementSystem.Models.Step", "Step")
+                        .WithMany("TeamMemberStep")
+                        .HasForeignKey("StepId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ProjectManagementSystem.Models.TeamMember", "TeamMember")
+                        .WithMany("TeamMemberStep")
+                        .HasForeignKey("TeamMemberId1");
                 });
 #pragma warning restore 612, 618
         }

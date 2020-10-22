@@ -17,13 +17,13 @@ namespace ProjectManagementSystem.Models {
         [StringLength(500, MinimumLength = 30, ErrorMessage = "Your description must have at least 30 characters and a maximum of 500 characters!")]
         public string Description { get; set; }
 
-        public List<Step> Steps{ get; set; }
+        public ICollection<Step> Steps{ get; set; }
 
         public int TeamId { get; set; }
 
         public Team Team{ get; set; }
 
-        public Project() {
+        public Project() {            
         }
     }
 }

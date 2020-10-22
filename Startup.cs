@@ -38,7 +38,7 @@ namespace ProjectManagementSystem {
             services.AddScoped<StepService>();
             services.AddScoped<TeamService>();
 
-            services.AddDbContextPool<ProjectContext>(options => options.UseMySql(Configuration.GetConnectionString("ProjectContext"), builder => builder.MigrationsAssembly("ProjectManagementSystem")));
+            services.AddDbContextPool<ProjectContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ProjectContext")));
 
 
 

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,12 +9,14 @@ namespace ProjectManagementSystem.Models {
     public class Team {
         public int Id { get; set; }
 
-        public TeamMember ProjectLeaderId{ get; set; }
+        public int UserId{ get; set; }
 
-        public TeamMember ProjectLeader{ get; set; }
-
-        public List<TeamMember> TeamMembers{ get; set; }
+        [Display(Name = "Project Leader")]
+        public User User{ get; set; }
         
-        public Team() { }
+        public ICollection<TeamMember> TeamMembers{ get; set; }
+        
+        public Team() {            
+        }
     }
 }

@@ -18,10 +18,9 @@ namespace ProjectManagementSystem.Models {
 
         public Team Team{ get; set; }
 
-        public ICollection<Step> Steps{ get; set; }
+        public ICollection<TeamMemberStep> TeamMemberStep{ get; set; }
 
-        public TeamMember() {
-
+        public TeamMember() {            
         }
 
     }   

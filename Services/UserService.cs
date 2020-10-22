@@ -35,7 +35,6 @@ namespace ProjectManagementSystem.Services {
         }
 
         public async Task LoginAsync(UserLoginViewModel model) {
-            var user = await UserManager.FindByEmailAsync(model.Email);
             await SigninManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);            
         }
 

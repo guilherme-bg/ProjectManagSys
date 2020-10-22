@@ -36,7 +36,6 @@ C:\Users\Guilherme\source\repos\ProjectManagementSystem\ProjectManagementSystem\
 C:\Users\Guilherme\source\repos\guilherme-bg\ProjectManagSys\obj\Debug\netcoreapp2.1\ProjectManagementSystem.csprojAssemblyReference.cache
 C:\Users\Guilherme\source\repos\guilherme-bg\ProjectManagSys\obj\Debug\netcoreapp2.1\ProjectManagementSystem.AssemblyInfoInputs.cache
 C:\Users\Guilherme\source\repos\guilherme-bg\ProjectManagSys\obj\Debug\netcoreapp2.1\ProjectManagementSystem.AssemblyInfo.cs
-C:\Users\Guilherme\source\repos\guilherme-bg\ProjectManagSys\obj\Debug\netcoreapp2.1\ProjectManagementSystem.csproj.CoreCompileInputs.cache
 C:\Users\Guilherme\source\repos\guilherme-bg\ProjectManagSys\obj\Debug\netcoreapp2.1\ProjectManagementSystem.RazorAssemblyInfo.cache
 C:\Users\Guilherme\source\repos\guilherme-bg\ProjectManagSys\obj\Debug\netcoreapp2.1\ProjectManagementSystem.RazorAssemblyInfo.cs
 C:\Users\Guilherme\source\repos\guilherme-bg\ProjectManagSys\obj\Debug\netcoreapp2.1\ProjectManagementSystem.dll
@@ -72,3 +71,4 @@ C:\Users\Guilherme\source\repos\guilherme-bg\ProjectManagSys\obj\Debug\netcoreap
 C:\Users\Guilherme\source\repos\guilherme-bg\ProjectManagSys\obj\Debug\netcoreapp2.1\ProjectManagementSystem.Views.pdb
 C:\Users\Guilherme\source\repos\guilherme-bg\ProjectManagSys\obj\Debug\netcoreapp2.1\ProjectManagementSystem.genruntimeconfig.cache
 C:\Users\Guilherme\source\repos\guilherme-bg\ProjectManagSys\obj\Debug\netcoreapp2.1\ProjectManagementSystem.csproj.CopyComplete
+C:\Users\Guilherme\source\repos\guilherme-bg\ProjectManagSys\obj\Debug\netcoreapp2.1\ProjectManagementSystem.csproj.CoreCompileInputs.cache
